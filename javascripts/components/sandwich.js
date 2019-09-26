@@ -1,5 +1,5 @@
-import utilities from "../helpers/utilities";
-import bread from "./components/bread.js";
+import utilities from "../helpers/utilities.js";
+import bread from "./bread.js";
 
 const createFinalOrder = (items) => {
     let domString2 = '';
