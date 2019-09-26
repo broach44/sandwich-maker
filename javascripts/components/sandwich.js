@@ -2,9 +2,10 @@ import utilities from "../helpers/utilities.js";
 import bread from "./bread.js";
 
 const createFinalOrder = (items) => {
-    let domString2 = '';
+    let domString2 = `<p>Thank you for your order!</p>`;
     for (let i=0; i < items.length; i++) {
-        domString2 += `<p>${items[i].name} ${items[i].price}</p>`
+        domString2 += `
+        <p>${items[i].name} ${items[i].price}</p>`
     };
     utilities.printToDom('final-order', domString2);
 };
