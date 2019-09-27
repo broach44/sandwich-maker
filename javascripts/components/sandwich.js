@@ -1,6 +1,7 @@
 import utilities from "../helpers/utilities.js";
 import bread from "./bread.js";
 import meat from "./meat.js";
+import cheese from "./cheese.js";
 
 const createFinalOrder = (items) => {
     let domString2 = `<div><br><p>Thank you for your order!</p><br>`;
@@ -22,8 +23,9 @@ const createFinalOrder = (items) => {
 
 const createOrderEvent = () => {
     const selectedBreads = bread.getSelectedBreads();
+    const selectedCheeses = cheese.getSelectedCheeses();
     const selectedMeats = meat.getSelectedMeats();
-    const allItems = selectedBreads.concat(selectedMeats);
+    const allItems = selectedBreads.concat(selectedMeats, selectedCheeses);
     createFinalOrder(allItems);
 };
 
