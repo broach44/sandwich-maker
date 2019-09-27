@@ -23,9 +23,8 @@ const createFinalOrder = (items) => {
 const createOrderEvent = () => {
     const selectedBreads = bread.getSelectedBreads();
     const selectedMeats = meat.getSelectedMeats();
-    createFinalOrder(selectedBreads);
-    createFinalOrder(selectedMeats);
-
+    const allItems = selectedBreads.concat(selectedMeats);
+    createFinalOrder(allItems);
 };
 
 const printOrderButton = () => {
