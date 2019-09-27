@@ -6,7 +6,7 @@ import veggie from './veggie.js';
 import condiment from './condiment.js';
 
 const createFinalOrder = (items) => {
-    let domString2 = `<div><br><p>Thank you for your order!</p><br>`;
+    let domString2 = `<div class="alert alert-secondary text-center" role="alert"><br><h3>Thank you for your order!</h3><br>`;
     let sum = 0;
     for (let i=0; i < items.length; i++) {
         let priceNumber = items[i].price
@@ -19,7 +19,7 @@ const createFinalOrder = (items) => {
     };
     sum /= 100;
     const totalDollars = sum.toLocaleString("en-US", {style:"currency", currency: "USD"});
-    domString2 += `<hr><p>Your total is: ${totalDollars}</p></div>`;
+    domString2 += `<hr><h4>Your total is: ${totalDollars}</h4></div>`;
     utilities.printToDom('final-order', domString2);
 };
 
@@ -34,7 +34,7 @@ const createOrderEvent = () => {
 };
 
 const printOrderButton = () => {
-    const domString = `<button class="btn btn-secondary" id="order-button">Create Sandwich</button>`;
+    const domString = `<button class="btn btn-secondary btn-lg btn-block mb-3" id="order-button">Create Sandwich</button>`;
     utilities.printToDom('final-order', domString);
     document.getElementById('order-button').addEventListener('click', createOrderEvent);
 };
