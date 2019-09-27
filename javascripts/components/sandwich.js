@@ -1,5 +1,6 @@
 import utilities from "../helpers/utilities.js";
 import bread from "./bread.js";
+import meat from "./meat.js";
 
 const createFinalOrder = (items) => {
     let domString2 = `<div><br><p>Thank you for your order!</p><br>`;
@@ -21,7 +22,9 @@ const createFinalOrder = (items) => {
 
 const createOrderEvent = () => {
     const selectedBreads = bread.getSelectedBreads();
-    createFinalOrder(selectedBreads);
+    const selectedMeats = meat.getSelectedMeats();
+    const allItems = selectedBreads.concat(selectedMeats);
+    createFinalOrder(allItems);
 };
 
 const printOrderButton = () => {
