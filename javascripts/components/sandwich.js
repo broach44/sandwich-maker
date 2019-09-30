@@ -5,6 +5,8 @@ import cheese from "./cheese.js";
 import veggie from './veggie.js';
 import condiment from './condiment.js';
 
+
+
 const createFinalOrder = (items) => {
     let domString2 = `<div class="alert alert-secondary text-center" role="alert"><br><h3>Thank you for your order!</h3><br>`;
     let sum = 0;

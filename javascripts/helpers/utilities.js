@@ -3,8 +3,4 @@ const printToDom = (divId, toPrint) => {
     selectedDiv.innerHTML = toPrint;
 };
 
-const addPrices = (arr) => {
-    
-};
-
 export default { printToDom };
