@@ -33,9 +33,11 @@ const bread = [
     }
 ];
 
+
+
+
 const getSelectedBreads = () => {
     const selectedBreads = [];
-    const breadCheckboxes = document.getElementsByClassName('bread');
     for (let i = 0; i < breadCheckboxes.length; i++) {
         for (let j = 0; j < bread.length; j++) {
             if (breadCheckboxes[i].checked && breadCheckboxes[i].id === bread[j].id) {
@@ -60,4 +62,35 @@ const breadPrinter = () => {
     utilities.printToDom('bread-holder', domString);
 };
 
-export default { breadPrinter, getSelectedBreads };
+
+const breadCheckboxes = document.getElementsByClassName('bread');
+const breadItemsTotal = breadCheckboxes.length;
+// const lastItemIndex = breadItemsTotal - 1;
+const selectLastItem = breadCheckboxes[breadItemsTotal - 1];
+
+const clearOtherBoxes = () => {
+    alert('you clicked the right checkbox');
+};
+
+const addClickToItem = () => {
+    selectLastItem.addEventListener('click', clearOtherBoxes);
+};
+
+
+//listen for "no items" is checked (last item in the array of objects)
+//then check if all other items in the array are checked
+//if they are checked
+//then uncheck the other items
+
+
+// const addCheckListener = (checkList) => {
+
+//     for (let i = 0; i < checklist.length; i++) {
+//         if (checklist[i].checked) {
+//             checlist[i].checked = false;
+//         };
+//     };
+// };
+
+
+export default { breadPrinter, getSelectedBreads, addClickToItem };
