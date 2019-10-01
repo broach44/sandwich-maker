@@ -38,7 +38,7 @@ const getSelectedVeggies = () => {
             };
         };
     };
-    return selectedVeggies;
+    return selectedVeggies;    
 };
 
 const uncheckItemsVeggie = () => {
@@ -79,12 +79,13 @@ const veggiePrinter = () => {
     for (let i = 0; i < veggie.length; i++) {
         domString +=`
         <div class="form-group form-check">
-        <input type="checkbox" class="form-check-input veggie" id=${veggie[i].id}>
+        <input type="checkbox" class="form-checkbox veggie" id=${veggie[i].id}>
         <label class="form-check-label" for=${veggie[i].id}>${veggie[i].name}</label>
         </div>
         `
     }
     utilities.printToDom('veggie-holder', domString);
+    document.getElementById('veggie5').checked = true;
     addCheckListenerVeggie();
     addOtherCheckListeners();
 };

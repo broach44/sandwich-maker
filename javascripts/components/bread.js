@@ -33,11 +33,9 @@ const bread = [
     }
 ];
 
-
-
-
 const getSelectedBreads = () => {
     const selectedBreads = [];
+    const breadCheckboxes = document.getElementsByClassName('bread');
     for (let i = 0; i < breadCheckboxes.length; i++) {
         for (let j = 0; j < bread.length; j++) {
             if (breadCheckboxes[i].checked && breadCheckboxes[i].id === bread[j].id) {
@@ -86,12 +84,13 @@ const breadPrinter = () => {
     for (let i = 0; i < bread.length; i++) {
         domString +=`
         <div class="form-group form-check">
-        <input type="checkbox" class="form-check-input bread" id=${bread[i].id}>
+        <input type="radio" class="form-checkbox bread" name="breadItem" id=${bread[i].id}>
         <label class="form-check-label" for=${bread[i].id}>${bread[i].name}</label>
         </div>
         `
     }
     utilities.printToDom('bread-holder', domString);
+    document.getElementById('bread6').checked = true;
     addCheckListenerBread();
     addOtherCheckListeners();
 };

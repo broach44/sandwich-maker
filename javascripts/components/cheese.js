@@ -79,12 +79,13 @@ const cheesePrinter = () => {
     for (let i = 0; i < cheese.length; i++) {
         domString +=`
         <div class="form-group form-check">
-        <input type="checkbox" class="form-check-input cheese" id=${cheese[i].id}>
+        <input type="checkbox" class="form-checkbox cheese" id=${cheese[i].id}>
         <label class="form-check-label" for=${cheese[i].id}>${cheese[i].name}</label>
         </div>
         `
     }
     utilities.printToDom('cheese-holder', domString);
+    document.getElementById('cheese5').checked = true;
     addCheckListenerCheese();
     addOtherCheckListeners();
 };
