@@ -38,7 +38,40 @@ const getSelectedVeggies = () => {
             };
         };
     };
-    return selectedVeggies;
+    return selectedVeggies;    
+};
+
+const uncheckItemsVeggie = () => {
+    const allItems = document.getElementsByClassName('veggie'); //select collection of items
+    let allItemsLength = allItems.length;  //length of total group
+    const lastItem = document.getElementById('veggie' + allItemsLength);
+    allItemsLength -= 1;  //reduces length to not include last item
+    if (lastItem.checked) {
+        for (let i = 0; i < allItemsLength; i++) {  //loop through 
+            allItems[i].checked = false;
+        };
+    };
+};
+
+const uncheckNoVeggie = () => {
+    const lastItem = document.getElementById('veggie5')
+    if (lastItem.checked) {
+        lastItem.checked = false;
+    };
+};
+
+const addCheckListenerVeggie = () => {
+    document.getElementById('veggie5').addEventListener('click', uncheckItemsVeggie);
+};
+
+const addOtherCheckListeners = () => {
+    const allItems = document.getElementsByClassName('veggie'); //select collection of items
+    let allItemsLength = allItems.length;
+    allItemsLength -= 1;
+    for (let i = 0; i < allItemsLength; i++) {
+        const veggieSelection = document.getElementsByClassName('veggie');
+        veggieSelection[i].addEventListener('click', uncheckNoVeggie);
+    };
 };
 
 const veggiePrinter = () => {
@@ -46,12 +79,15 @@ const veggiePrinter = () => {
     for (let i = 0; i < veggie.length; i++) {
         domString +=`
         <div class="form-group form-check">
-        <input type="checkbox" class="form-check-input veggie" id=${veggie[i].id}>
+        <input type="checkbox" class="form-checkbox veggie" id=${veggie[i].id}>
         <label class="form-check-label" for=${veggie[i].id}>${veggie[i].name}</label>
         </div>
         `
     }
     utilities.printToDom('veggie-holder', domString);
+    document.getElementById('veggie5').checked = true;
+    addCheckListenerVeggie();
+    addOtherCheckListeners();
 };
 
 export default { veggiePrinter, getSelectedVeggies };

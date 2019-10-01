@@ -41,17 +41,53 @@ const getSelectedCondiments = () => {
     return selectedCondiments;
 };
 
+const uncheckItemsCondiment = () => {
+    const allItems = document.getElementsByClassName('condiment'); //select collection of items
+    let allItemsLength = allItems.length;  //length of total group
+    const lastItem = document.getElementById('condiment' + allItemsLength);
+    allItemsLength -= 1;  //reduces length to not include last item
+    if (lastItem.checked) {
+        for (let i = 0; i < allItemsLength; i++) {  //loop through 
+            allItems[i].checked = false;
+        };
+    };
+};
+
+const uncheckNoCondiment = () => {
+    const lastItem = document.getElementById('condiment5')
+    if (lastItem.checked) {
+        lastItem.checked = false;
+    };
+};
+
+const addCheckListenerCondiment = () => {
+    document.getElementById('condiment5').addEventListener('click', uncheckItemsCondiment);
+};
+
+const addOtherCheckListeners = () => {
+    const allItems = document.getElementsByClassName('condiment'); //select collection of items
+    let allItemsLength = allItems.length;
+    allItemsLength -= 1;
+    for (let i = 0; i < allItemsLength; i++) {
+        const condimentSelection = document.getElementsByClassName('condiment');
+        condimentSelection[i].addEventListener('click', uncheckNoCondiment);
+    };
+};
+
 const condimentPrinter = () => {
     let domString = `<h2>Condiment</h2>`;
     for (let i = 0; i < condiment.length; i++) {
         domString +=`
         <div class="form-group form-check">
-        <input type="checkbox" class="form-check-input condiment" id=${condiment[i].id}>
+        <input type="checkbox" class="form-checkbox condiment" id=${condiment[i].id}>
         <label class="form-check-label" for=${condiment[i].id}>${condiment[i].name}</label>
         </div>
         `
     }
     utilities.printToDom('condiment-holder', domString);
+    document.getElementById('condiment5').checked = true;
+    addCheckListenerCondiment();
+    addOtherCheckListeners();
 };
 
 export default { condimentPrinter, getSelectedCondiments };
