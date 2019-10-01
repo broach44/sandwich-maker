@@ -41,6 +41,39 @@ const getSelectedCheeses = () => {
     return selectedCheeses;
 };
 
+const uncheckItemsCheese = () => {
+    const allItems = document.getElementsByClassName('cheese'); //select collection of items
+    let allItemsLength = allItems.length;  //length of total group
+    const lastItem = document.getElementById('cheese' + allItemsLength);
+    allItemsLength -= 1;  //reduces length to not include last item
+    if (lastItem.checked) {
+        for (let i = 0; i < allItemsLength; i++) {  //loop through 
+            allItems[i].checked = false;
+        };
+    };
+};
+
+const uncheckNoCheese = () => {
+    const lastItem = document.getElementById('cheese5')
+    if (lastItem.checked) {
+        lastItem.checked = false;
+    };
+};
+
+const addCheckListenerCheese = () => {
+    document.getElementById('cheese5').addEventListener('click', uncheckItemsCheese);
+};
+
+const addOtherCheckListeners = () => {
+    const allItems = document.getElementsByClassName('cheese'); //select collection of items
+    let allItemsLength = allItems.length;
+    allItemsLength -= 1;
+    for (let i = 0; i < allItemsLength; i++) {
+        const cheeseSelection = document.getElementsByClassName('cheese');
+        cheeseSelection[i].addEventListener('click', uncheckNoCheese);
+    };
+};
+
 const cheesePrinter = () => {
     let domString = `<h2>Cheese</h2>`;
     for (let i = 0; i < cheese.length; i++) {
@@ -52,6 +85,8 @@ const cheesePrinter = () => {
         `
     }
     utilities.printToDom('cheese-holder', domString);
+    addCheckListenerCheese();
+    addOtherCheckListeners();
 };
 
 export default { cheesePrinter, getSelectedCheeses };

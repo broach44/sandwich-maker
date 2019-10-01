@@ -41,6 +41,39 @@ const getSelectedVeggies = () => {
     return selectedVeggies;
 };
 
+const uncheckItemsVeggie = () => {
+    const allItems = document.getElementsByClassName('veggie'); //select collection of items
+    let allItemsLength = allItems.length;  //length of total group
+    const lastItem = document.getElementById('veggie' + allItemsLength);
+    allItemsLength -= 1;  //reduces length to not include last item
+    if (lastItem.checked) {
+        for (let i = 0; i < allItemsLength; i++) {  //loop through 
+            allItems[i].checked = false;
+        };
+    };
+};
+
+const uncheckNoVeggie = () => {
+    const lastItem = document.getElementById('veggie5')
+    if (lastItem.checked) {
+        lastItem.checked = false;
+    };
+};
+
+const addCheckListenerVeggie = () => {
+    document.getElementById('veggie5').addEventListener('click', uncheckItemsVeggie);
+};
+
+const addOtherCheckListeners = () => {
+    const allItems = document.getElementsByClassName('veggie'); //select collection of items
+    let allItemsLength = allItems.length;
+    allItemsLength -= 1;
+    for (let i = 0; i < allItemsLength; i++) {
+        const veggieSelection = document.getElementsByClassName('veggie');
+        veggieSelection[i].addEventListener('click', uncheckNoVeggie);
+    };
+};
+
 const veggiePrinter = () => {
     let domString = `<h2>Veggie</h2>`;
     for (let i = 0; i < veggie.length; i++) {
@@ -52,6 +85,8 @@ const veggiePrinter = () => {
         `
     }
     utilities.printToDom('veggie-holder', domString);
+    addCheckListenerVeggie();
+    addOtherCheckListeners();
 };
 
 export default { veggiePrinter, getSelectedVeggies };

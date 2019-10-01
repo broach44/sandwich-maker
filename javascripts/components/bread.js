@@ -48,6 +48,39 @@ const getSelectedBreads = () => {
     return selectedBreads;
 };
 
+const uncheckItemsBread = () => {
+    const allItems = document.getElementsByClassName('bread'); //select collection of items
+    let allItemsLength = allItems.length;  //length of total group
+    const lastItem = document.getElementById('bread' + allItemsLength);
+    allItemsLength -= 1;  //reduces length to not include last item
+    if (lastItem.checked) {
+        for (let i = 0; i < allItemsLength; i++) {  //loop through 
+            allItems[i].checked = false;
+        };
+    };
+};
+
+const uncheckNoBread = () => {
+    const lastItem = document.getElementById('bread6')
+    if (lastItem.checked) {
+        lastItem.checked = false;
+    };
+};
+
+const addCheckListenerBread = () => {
+    document.getElementById('bread6').addEventListener('click', uncheckItemsBread);
+};
+
+const addOtherCheckListeners = () => {
+    const allItems = document.getElementsByClassName('bread'); //select collection of items
+    let allItemsLength = allItems.length;
+    allItemsLength -= 1;
+    for (let i = 0; i < allItemsLength; i++) {
+        const breadSelection = document.getElementsByClassName('bread');
+        breadSelection[i].addEventListener('click', uncheckNoBread);
+    };
+};
+
 const breadPrinter = () => {
     let domString = `<h2>Bread</h2>`;
     for (let i = 0; i < bread.length; i++) {
@@ -58,39 +91,9 @@ const breadPrinter = () => {
         </div>
         `
     }
-   
     utilities.printToDom('bread-holder', domString);
+    addCheckListenerBread();
+    addOtherCheckListeners();
 };
 
-
-const breadCheckboxes = document.getElementsByClassName('bread');
-const breadItemsTotal = breadCheckboxes.length;
-// const lastItemIndex = breadItemsTotal - 1;
-const selectLastItem = breadCheckboxes[breadItemsTotal - 1];
-
-const clearOtherBoxes = () => {
-    alert('you clicked the right checkbox');
-};
-
-const addClickToItem = () => {
-    selectLastItem.addEventListener('click', clearOtherBoxes);
-};
-
-
-//listen for "no items" is checked (last item in the array of objects)
-//then check if all other items in the array are checked
-//if they are checked
-//then uncheck the other items
-
-
-// const addCheckListener = (checkList) => {
-
-//     for (let i = 0; i < checklist.length; i++) {
-//         if (checklist[i].checked) {
-//             checlist[i].checked = false;
-//         };
-//     };
-// };
-
-
-export default { breadPrinter, getSelectedBreads, addClickToItem };
+export default { breadPrinter, getSelectedBreads };

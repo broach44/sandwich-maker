@@ -12,7 +12,6 @@ const init = () => {
     veggie.veggiePrinter();
     condiment.condimentPrinter();
     sandwich.printOrderButton();
-    bread.addClickToItem();
 };
 
 init();
